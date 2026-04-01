@@ -1,0 +1,253 @@
+/* Reuse the same layout styles from dashboard */
+.layout {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.sidebar {
+  width: 220px;
+  background: #1a1a2e;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  position: fixed;
+  top: 0; left: 0;
+  height: 100vh;
+}
+
+.sidebar-brand {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  padding: 0 20px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-nav { flex: 1; padding: 20px 0; }
+
+.nav-link {
+  display: block;
+  padding: 12px 24px;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.nav-link:hover, .nav-link.active {
+  background: rgba(255,255,255,0.1);
+  color: white;
+  border-left: 3px solid #4361ee;
+}
+
+.logout-btn {
+  margin: 10px 20px;
+  padding: 10px;
+  background: #f72585;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 220px;
+  background: #f0f2f5;
+  padding: 24px;
+}
+
+.topbar {
+  background: white;
+  padding: 16px 24px;
+  border-radius: 10px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.topbar h2 { margin: 0; color: #1a1a2e; }
+
+.message-box {
+  background: #efffef;
+  border: 1px solid #b2deb2;
+  color: #2e7d32;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.table-card {
+  background: white;
+  border-radius: 12px;
+  overflow: auto;           
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.users-table th {
+  background: #f8f9fa;
+  padding: 14px 16px;
+  text-align: left;
+  color: #555;
+  font-weight: 600;
+  border-bottom: 2px solid #eee;
+}
+
+.users-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #333;
+}
+
+.users-table tr:hover { background: #fafafa; }
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-admin   { background: #fff0f5; color: #f72585; }
+.badge-user    { background: #eef0ff; color: #4361ee; }
+.badge-active  { background: #efffef; color: #2e7d32; }
+.badge-inactive{ background: #fff0f0; color: #cc0000; }
+
+.action-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-blue   { background: #eef0ff; color: #4361ee; }
+.btn-yellow { background: #fffbee; color: #b68400; }
+.btn-red    { background: #fff0f0; color: #cc0000; }
+
+.btn:hover { opacity: 0.8; }
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .main-content { margin-left: 0; }
+  .form-row { flex-direction: column; }
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-add {
+  padding: 9px 18px;
+  background: #4361ee;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-add:hover { background: #3451d1; }
+
+.create-form-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border-left: 4px solid #4361ee;
+}
+
+.create-form-card h3 {
+  margin: 0 0 20px;
+  font-size: 16px;
+  color: #1a1a2e;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+}
+
+.form-input {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #4361ee;
+}
+
+.btn-submit {
+  padding: 10px 24px;
+  background: #4361ee;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-submit:hover:not(:disabled) { background: #3451d1; }
+.btn-submit:disabled { background: #aaa; cursor: not-allowed; }
+
+.message-box {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.message-success {
+  background: #efffef;
+  border: 1px solid #b2deb2;
+  color: #2e7d32;
+}
+
+.message-error {
+  background: #fff0f0;
+  border: 1px solid #ffcccc;
+  color: #cc0000;
+}
+
+.loading-text { color: #888; padding: 10px 0; }

@@ -1,0 +1,125 @@
+<div class="layout">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">🛡️ AdminPanel</div>
+    <nav class="sidebar-nav">
+      <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">📊 Dashboard</a>
+      <a routerLink="/users" routerLinkActive="active" class="nav-link">👥 Users</a>
+    </nav>
+    <button class="logout-btn" (click)="logout()">🚪 Logout</button>
+  </aside>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content">
+
+    <!-- Top bar with "Add User" button -->
+    <div class="topbar">
+      <h2>User Management</h2>
+      <!-- Clicking this button toggles the create-user form open/closed -->
+      <button class="btn-add" (click)="showForm = !showForm">
+        {{ showForm ? '✖ Cancel' : '➕ Add User' }}
+      </button>
+    </div>
+
+    <!-- ===== CREATE USER FORM (hidden by default) ===== -->
+    <!-- *ngIf="showForm" means: only show this when showForm is true -->
+    <div class="create-form-card" *ngIf="showForm">
+      <h3>Create New User</h3>
+
+      <div class="form-row">
+        <!-- Name -->
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" [(ngModel)]="newUser.name" placeholder="John Doe" class="form-input" />
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" [(ngModel)]="newUser.email" placeholder="john@example.com" class="form-input" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <!-- Password -->
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" [(ngModel)]="newUser.password" placeholder="Min 6 characters" class="form-input" />
+        </div>
+
+        <!-- Role dropdown -->
+        <div class="form-group">
+          <label>Role</label>
+          <!-- [(ngModel)]="newUser.role" binds the selected option to our variable -->
+          <select [(ngModel)]="newUser.role" class="form-input">
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn-submit" (click)="createUser()" [disabled]="isCreating">
+        {{ isCreating ? 'Creating...' : 'Create User' }}
+      </button>
+    </div>
+
+    <!-- Success / Error message — green for success, red for error -->
+    <div class="message-box"
+         *ngIf="message"
+         [class.message-error]="isError"
+         [class.message-success]="!isError">
+      {{ isError ? '⚠️' : '✅' }} {{ message }}
+    </div>
+
+    <!-- Loading state -->
+    <p *ngIf="isLoading" class="loading-text">Loading users...</p>
+
+    <!-- Users Table -->
+    <div class="table-card" *ngIf="!isLoading">
+      <table class="users-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Joined</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+
+            <td>
+              <span class="badge" [class.badge-admin]="user.role === 'admin'"
+                    [class.badge-user]="user.role === 'user'">
+                {{ user.role }}
+              </span>
+            </td>
+
+            <td>
+              <span class="badge" [class.badge-active]="user.isActive"
+                    [class.badge-inactive]="!user.isActive">
+                {{ user.isActive ? 'Active' : 'Inactive' }}
+              </span>
+            </td>
+
+            <td>{{ user.createdAt | date: 'mediumDate' }}</td>
+
+            <td class="action-btns">
+              <button class="btn btn-blue" (click)="toggleRole(user)">Toggle Role</button>
+              <button class="btn btn-yellow" (click)="toggleStatus(user)">
+                {{ user.isActive ? 'Deactivate' : 'Activate' }}
+              </button>
+              <button class="btn btn-red" (click)="deleteUser(user._id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+</div>

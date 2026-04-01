@@ -1,0 +1,81 @@
+<div class="layout">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">🛡️ AdminPanel</div>
+
+    <nav class="sidebar-nav">
+      <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">
+        📊 Dashboard
+      </a>
+      <a routerLink="/users" routerLinkActive="active" class="nav-link">
+        👥 Users
+      </a>
+    </nav>
+
+    <button class="logout-btn" (click)="logout()">🚪 Logout</button>
+  </aside>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content">
+
+    <!-- Top Header Bar -->
+    <div class="topbar">
+      <h2>Dashboard Overview</h2>
+      <span class="admin-badge">👤 {{ adminName }}</span>
+    </div>
+
+    <!-- ===== METRIC CARDS ===== -->
+    <div class="cards-grid">
+
+      <div class="card">
+        <div class="card-icon blue">👥</div>
+        <div class="card-info">
+          <p class="card-label">Total Users</p>
+          <h3 class="card-value">{{ overview.totalUsers }}</h3>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon green">✅</div>
+        <div class="card-info">
+          <p class="card-label">Active Users</p>
+          <h3 class="card-value">{{ overview.activeUsers }}</h3>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon red">🛡️</div>
+        <div class="card-info">
+          <p class="card-label">Admins</p>
+          <h3 class="card-value">{{ overview.totalAdmins }}</h3>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon yellow">🆕</div>
+        <div class="card-info">
+          <p class="card-label">New Signups (7d)</p>
+          <h3 class="card-value">{{ overview.newSignups }}</h3>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===== CHARTS SECTION ===== -->
+    <div class="charts-grid">
+
+      <!-- Line Chart -->
+      <div class="chart-card">
+        <canvas id="signupChart"></canvas>
+      </div>
+
+      <!-- Doughnut Chart -->
+      <div class="chart-card">
+        <canvas id="roleChart"></canvas>
+      </div>
+
+    </div>
+
+  </main>
+</div>
